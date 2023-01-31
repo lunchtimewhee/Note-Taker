@@ -1,6 +1,7 @@
 const express = require('express');
+const path = require('path');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -8,6 +9,8 @@ let notes = require('./db/db.json');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname,'public')));
+
 
 // GET route
 app.get('/api/notes', (req, res) => {
@@ -30,6 +33,11 @@ app.post('/api/notes', (req, res) => {
     }
 
     notes.push(newNote);
+    
+    // Renumber index for each note
+    notes.forEach((note, index) => {
+        note.id = index + 1;
+    })
 
 
     res.status(200).json(newNote);
@@ -70,3 +78,5 @@ app.delete('/api/notes/:id', (req, res) => {
 app.listen(PORT, () =>
   console.log(`Express server listening on port ${PORT}!`)
 );
+
+module.exports = app;

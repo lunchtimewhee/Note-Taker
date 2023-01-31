@@ -29,7 +29,16 @@ An application to allow you to take quick notes and save them down. You can also
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Usage Information
-See Installation Instructions above.
+1. Deleting an existing note:
+[![step1](./Develop/public/assets/images/step1.JPG)]
+
+[![step2](./Develop/public/assets/images/step2.JPG)]
+
+2. Creating a new note:
+[![step3](./Develop/public/assets/images/step3.JPG)]
+
+[![step4](./Develop/public/assets/images/step4.JPG)]
+
 
 ## Contribution Guidelines
 Please reach out to Anthony at the listed contact methods.

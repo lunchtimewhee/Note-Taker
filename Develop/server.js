@@ -14,8 +14,14 @@ app.use(express.static(path.join(__dirname,'public')));
 
 // GET route
 app.get('/api/notes', (req, res) => {
-  // Return the entire DB
-  res.status(200).json(notes);
+  
+    // Renumber index for each note
+    notes.forEach((note, index) => {
+        note.id = index + 1;
+    })
+  
+    // Return the entire DB
+    res.status(200).json(notes);
 
 });
 

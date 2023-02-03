@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
-//let notes = require(`${path.join(__dirname,'public')}/db/db.json`);
+let notes = require(`${path.join(__dirname,'public')}/db/db.json`);
 
 // GET route
 app.get('/api/notes', (req, res) => {

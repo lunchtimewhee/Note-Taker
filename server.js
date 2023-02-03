@@ -84,6 +84,7 @@ app.delete('/api/notes/:id', async (req, res) => {
         note.id = index + 1;
     })
 
+    
     const noteToWrite = JSON.stringify(notes);
     
 

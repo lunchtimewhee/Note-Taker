@@ -30,6 +30,7 @@ An application to allow you to take quick notes and save them down. You can also
 
 ## Usage Information
 Video: https://app.castify.com/view/a0bb85b6-d014-4de4-a0dc-a86221bc3c6b
+Heroku App: https://pacific-fortress-88036.herokuapp.com/
 
 1. Deleting an existing note:
 [![step1](./Develop/public/assets/images/step1.JPG)]

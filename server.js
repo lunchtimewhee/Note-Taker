@@ -11,6 +11,7 @@ let notes = require('./db/db.json');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
+console.log(path.join(__dirname,'public'))
 
 
 // GET route
@@ -45,9 +46,6 @@ app.post('/api/notes', async (req, res) => {
     notes.forEach((note, index) => {
         note.id = index + 1;
     })
-
-    const noteObj = {notes};
-    const strNoteObj = JSON.stringify(noteObj);
 
     await fs.writeFileSync('./db/db.json', strNoteObj, 'utf8');
 

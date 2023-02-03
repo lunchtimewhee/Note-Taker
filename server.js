@@ -14,6 +14,11 @@ app.use(express.static(path.join(__dirname,'public')));
 console.log(path.join(__dirname,'public'))
 
 
+
+app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+});
+
 // GET route
 app.get('/api/notes', (req, res) => {
   

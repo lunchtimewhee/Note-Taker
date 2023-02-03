@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const PORT = process.env.PORT || 3001;
 
@@ -27,7 +28,7 @@ app.get('/api/notes', (req, res) => {
 
 
 // POST route
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes', async (req, res) => {
 
     const { title, text } = req.body;
 
@@ -44,6 +45,11 @@ app.post('/api/notes', (req, res) => {
     notes.forEach((note, index) => {
         note.id = index + 1;
     })
+
+    const noteObj = {notes};
+    const strNoteObj = JSON.stringify(noteObj);
+
+    await fs.writeFileSync('./db/db.json', strNoteObj, 'utf8');
 
 
     res.status(200).json(newNote);

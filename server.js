@@ -5,9 +5,9 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
+console.log('test1');
 let notes = require('./db/db.json');
-
+console.log('test2');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));

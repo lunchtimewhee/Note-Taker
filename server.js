@@ -5,14 +5,13 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-console.log('test1');
-let notes = require(`./${__dirname}/db/db.json`);
-console.log('test2');
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
-console.log(path.join(__dirname,'public'))
 
+let notes = require(`${path.join(__dirname,'public')}\\db\\db.json`);
 
 // GET route
 app.get('/api/notes', (req, res) => {
@@ -47,7 +46,11 @@ app.post('/api/notes', async (req, res) => {
         note.id = index + 1;
     })
 
-    await fs.writeFileSync(`./${__dirname}/db/db.json`, strNoteObj, 'utf8');
+    const noteToWrite = JSON.stringify(notes);
+
+    await fs.writeFile(`${path.join(__dirname,'public')}\\db\\db.json`, noteToWrite, (err) =>{
+        err ? console.log(err) : console.log(`Wrote to DB successfully.`);
+    });
 
 
     res.status(200).json(newNote);
@@ -55,7 +58,7 @@ app.post('/api/notes', async (req, res) => {
   });
 
 // DELETE route
-app.delete('/api/notes/:id', (req, res) => {
+app.delete('/api/notes/:id', async (req, res) => {
 
     // Create boolean to track if ID was found or not 
     let foundId = false;
@@ -79,6 +82,13 @@ app.delete('/api/notes/:id', (req, res) => {
     notes.forEach((note, index) => {
         note.id = index + 1;
     })
+
+    const noteToWrite = JSON.stringify(notes);
+    
+
+    await fs.writeFile(`${path.join(__dirname,'public')}\\db\\db.json`, noteToWrite,  (err) =>{
+        err ? console.log(err) : console.log(`Deleted from DB successfully.`);
+    });
 
     res.status(200).json(`ID ${req.params.id} deleted.`);
 });

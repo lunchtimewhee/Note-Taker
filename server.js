@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
-let notes = require(`${path.join(__dirname,'public')}\\db\\db.json`);
+let notes = require(`${path.join(__dirname,'public')}/db/db.json`);
 
 // GET route
 app.get('/api/notes', (req, res) => {
@@ -48,7 +48,7 @@ app.post('/api/notes', async (req, res) => {
 
     const noteToWrite = JSON.stringify(notes);
 
-    await fs.writeFile(`${path.join(__dirname,'public')}\\db\\db.json`, noteToWrite, (err) =>{
+    await fs.writeFile(`${path.join(__dirname,'public')}/db/db.json`, noteToWrite, (err) =>{
         err ? console.log(err) : console.log(`Wrote to DB successfully.`);
     });
 

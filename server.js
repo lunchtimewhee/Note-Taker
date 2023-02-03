@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 console.log('test1');
-let notes = require('./public/db/db.json');
+let notes = require(`./${__dirname}/db/db.json`);
 console.log('test2');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,7 +47,7 @@ app.post('/api/notes', async (req, res) => {
         note.id = index + 1;
     })
 
-    await fs.writeFileSync('./public/db/db.json', strNoteObj, 'utf8');
+    await fs.writeFileSync(`./${__dirname}/db/db.json`, strNoteObj, 'utf8');
 
 
     res.status(200).json(newNote);

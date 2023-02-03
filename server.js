@@ -6,18 +6,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 console.log('test1');
-let notes = require('./db/db.json');
+let notes = require('./public/db/db.json');
 console.log('test2');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 console.log(path.join(__dirname,'public'))
 
-
-
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, '../public', 'index.html'));
-});
 
 // GET route
 app.get('/api/notes', (req, res) => {
@@ -52,7 +47,7 @@ app.post('/api/notes', async (req, res) => {
         note.id = index + 1;
     })
 
-    await fs.writeFileSync('./db/db.json', strNoteObj, 'utf8');
+    await fs.writeFileSync('./public/db/db.json', strNoteObj, 'utf8');
 
 
     res.status(200).json(newNote);
